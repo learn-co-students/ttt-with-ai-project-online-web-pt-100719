@@ -2,13 +2,13 @@
 
 require_relative '../config/environment'
 
-def start
-  computer_x = Players::Computer.new("X")
-  computer_o = Players::Computer.new("O")
-  human_x = Players::Human.new("X")
-  human_o = Players::Human.new("O")
-  board = Board.new
+computer_x = Players::Computer.new("X")
+computer_o = Players::Computer.new("O")
+human_x = Players::Human.new("X")
+human_o = Players::Human.new("O")
+board = Board.new
 
+def start
   puts "Welcome to TicTacToe Game!"
   puts "  To play computer vs. computer, input 0"
   puts "  To play human vs. computer, input 1"
