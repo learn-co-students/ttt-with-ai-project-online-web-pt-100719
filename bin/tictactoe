@@ -1,3 +1,85 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+def start
+  computer_x = Players::Computer.new("X")
+  computer_o = Players::Computer.new("O")
+  human_x = Players::Human.new("X")
+  human_o = Players::Human.new("O")
+  board = Board.new
+
+  puts "Welcome to TicTacToe Game!"
+  puts "  To play computer vs. computer, input 0"
+  puts "  To play human vs. computer, input 1"
+  puts "  To play human vs. human, input 2"
+  input = gets.strip
+
+  case input
+  when "0"
+    game = Game.new(computer_x,computer_o,board)
+    game.play
+  when "1"
+    puts "Who should go first?"
+    puts "- Human, input 0"
+    puts "- Computer, input 1"
+    input_2 = gets.strip
+    puts "What token would you like to choose? Input X or O"
+    token_input = gets.strip
+    human_vs_computer(input_2,token_input)
+  when "2"
+    puts "Who should go first?"
+    puts "- Player # 1, input 1"
+    puts "- Player # 2, input 2"
+    input_3 = gets.strip
+    puts "What token would you like to choose? Input X or O"
+    token_input = gets.strip
+    human_vs_human(input_3,token_input)
+  else
+    start
+  end
+end
+
+def human_vs_computer(input,token)
+  case input
+  when "0"
+    if token == "X" || token == "x"
+      game = Game.new(human_x,computer_o,board)
+    elsif(token == "O" || token == "o")
+      game = Game.new(human_o,computer_x,board)
+    end
+    puts "Input a number from 1 to 9"
+    game.play
+  when "1"
+    if token == "X" || token == "x"
+      game = Game.new(computer_o,human_x,board)
+    elsif(token == "O" || token == "o")
+      game = Game.new(computer_x,human_x,Board.new)
+    end
+    puts "Input a number from 1 to 9"
+    game.play
+  end
+end
+
+def human_vs_human(input,token)
+  case input
+  when "1"
+    if token == "X" || token == "x"
+      game = Game.new(human_x,human_o,board)
+    elsif(token == "O" || token == "o")
+      game = Game.new(human_o,human_x,board)
+    end
+    puts "Input a number from 1 to 9"
+    game.play
+  when "2"
+    if token == "X" || token == "x"
+      game = Game.new(human_o,human_x,board)
+    elsif(token == "O" || token == "o")
+      game = Game.new(human_x,human_o,board)
+    end
+    puts "Input a number from 1 to 9"
+    game.play
+  end
+end
+
+start

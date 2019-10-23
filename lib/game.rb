@@ -94,8 +94,8 @@ class Game
       @board.update(input,@current_player)
       @board.display
     else
-      puts "invalid"
-      current_player.move(@board)
+      puts "#{@current_player.token} made an invalid movement. Try again!"
+      @current_player.move(@board)
     end
   end
 
