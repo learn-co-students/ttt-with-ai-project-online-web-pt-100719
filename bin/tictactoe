@@ -2,11 +2,11 @@
 
 require_relative '../config/environment'
 
-computer_x = Players::Computer.new("X")
-computer_o = Players::Computer.new("O")
-human_x = Players::Human.new("X")
-human_o = Players::Human.new("O")
-board = Board.new
+@computer_x = Players::Computer.new("X")
+@computer_o = Players::Computer.new("O")
+@human_x = Players::Human.new("X")
+@human_o = Players::Human.new("O")
+@board = Board.new
 
 def start
   puts "Welcome to TicTacToe Game!"
@@ -17,7 +17,7 @@ def start
 
   case input
   when "0"
-    game = Game.new(computer_x,computer_o,board)
+    game = Game.new(@computer_x,@computer_o,@board)
     game.play
   when "1"
     puts "Who should go first?"
@@ -44,17 +44,17 @@ def human_vs_computer(input,token)
   case input
   when "0"
     if token == "X" || token == "x"
-      game = Game.new(human_x,computer_o,board)
+      game = Game.new(@human_x,@computer_o,@board)
     elsif(token == "O" || token == "o")
-      game = Game.new(human_o,computer_x,board)
+      game = Game.new(@human_o,@computer_x,@board)
     end
     puts "Input a number from 1 to 9"
     game.play
   when "1"
     if token == "X" || token == "x"
-      game = Game.new(computer_o,human_x,board)
+      game = Game.new(@computer_o,@human_x,@board)
     elsif(token == "O" || token == "o")
-      game = Game.new(computer_x,human_x,Board.new)
+      game = Game.new(@computer_x,@human_x,@board)
     end
     puts "Input a number from 1 to 9"
     game.play
@@ -65,21 +65,20 @@ def human_vs_human(input,token)
   case input
   when "1"
     if token == "X" || token == "x"
-      game = Game.new(human_x,human_o,board)
+      game = Game.new(@human_x,@human_o,@board)
     elsif(token == "O" || token == "o")
-      game = Game.new(human_o,human_x,board)
+      game = Game.new(@human_o,@human_x,@board)
     end
     puts "Input a number from 1 to 9"
     game.play
   when "2"
     if token == "X" || token == "x"
-      game = Game.new(human_o,human_x,board)
+      game = Game.new(@human_o,@human_x,@board)
     elsif(token == "O" || token == "o")
-      game = Game.new(human_x,human_o,board)
+      game = Game.new(@human_x,@human_o,@board)
     end
     puts "Input a number from 1 to 9"
     game.play
   end
 end
-
 start
