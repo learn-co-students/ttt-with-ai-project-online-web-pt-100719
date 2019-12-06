@@ -1,3 +1,38 @@
 #!/usr/bin/env ruby
-
 require_relative '../config/environment'
+require_relative '../lib/board.rb'
+require_relative '../lib/game.rb'
+require_relative '../lib/player.rb'
+require_relative '../lib/players/computer.rb'
+require_relative '../lib/players/human.rb'
+
+
+
+
+def game_start
+  puts "Welcome to Tic Tac BRO!"
+  puts "AYE HOW MANY PEOPLE ARE PLAYNG? Choose a mode, my guy!:
+  0 - Computah VS Computah
+  1 - Bruh VS Computah
+  2 - Bruh VS Your Bruh"
+
+  playmode = gets.strip
+
+  if playmode == "1"
+    puts "You wanna go first?!?! [yerrr or nah]"
+    if gets.strip == "yerrr"
+      Game.new(Players::Human.new("X"), Players::Computer.new("O"), Board.new).play
+    else   Game.new(Players::Computer.new("X"), Players::Human.new("O"), Board.new).play
+    end
+
+  elsif playmode == "0"
+    Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new).play
+
+  elsif playmode == "2"
+    Game.new(Players::Human.new("X"), Players::Human.new("O"), Board.new).play
+  end
+  puts "Would like to play again? [yerrr or nah]"
+
+end
+
+game_start until gets.strip == "n"
